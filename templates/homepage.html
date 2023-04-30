@@ -2,21 +2,52 @@
 
 <div class="row">
   <div class="col-lg-12 text-center">
-    <h1 class="mt-5">Ласкаво прошу до моєї бібліотеки фільмів</h1>
-    <p class="lead">Знайдеш тут лише найкращі назви фільмів!</p>
+    <h1 class="mt-5">Welcome to my movies library</h1>
+    <p class="lead">Here you will find your favorite movies!</p>
+  </div>
+
+  <div class="col-lg-12 mb-4">
+    <a
+      href="{{ url_for('homepage', list_type='now_playing') }}"
+      class="btn btn-outline-info{% if list_type == 'now_playing' %} active{% endif %}"
+      >Now Playing</a
+    >
+    <a
+      href="{{ url_for('homepage', list_type='popular') }}"
+      class="btn btn-outline-info{% if list_type == 'popular' %} active{% endif %}"
+      >Popular</a
+    >
+    <a
+      href="{{ url_for('homepage', list_type='top_rated') }}"
+      class="btn btn-outline-info{% if list_type == 'top_rated' %} active{% endif %}"
+      >Top Rated</a
+    >
+    <a
+      href="{{ url_for('homepage', list_type='upcoming') }}"
+      class="btn btn-outline-info{% if list_type == 'upcoming' %} active{% endif %}"
+      >Upcoming</a
+    >
   </div>
   {% for movie in movies %}
   <div class="col-lg-3 col-md-6 mb-4">
     <div class="card h-100">
-      <img class="card-img-top" src="http://placehold.it/300x500" alt="" />
+      <img
+        class="card-img-top"
+        src="{{ tmdb_image_url(movie.poster_path, 'w780') }}"
+      />
       <div class="card-body">
-        <h4 class="card-title">Назва фільму</h4>
-      </div>
-      <div class="card-footer text-center">
-        <a href="#" class="btn btn-primary">Показати більше </a>
+        <h4 class="card-title">{{ movie.title }}</h4>
+        <div class="card-footer">
+          <a
+            href="{{ url_for('movie_details', movie_id=movie.id) }}"
+            class="btn btn-primary"
+            >Show more</a
+          >
+        </div>
       </div>
     </div>
   </div>
+
   {% endfor %}
 </div>
 
