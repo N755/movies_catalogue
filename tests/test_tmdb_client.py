@@ -1,3 +1,7 @@
+import sys
+import pytest
+
+sys.path.insert(0, "./movies_catalogue")
 from unittest.mock import Mock
 import pytest
 
