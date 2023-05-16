@@ -2,8 +2,9 @@ import sys
 
 sys.path.insert(0, "./movies_catalogue")
 import pytest
-from main import app
+from ..main import app
 from unittest.mock import Mock
+from .. import tmdb_client
 
 
 @pytest.mark.parametrize(
